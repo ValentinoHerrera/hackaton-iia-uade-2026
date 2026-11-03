@@ -1,4 +1,4 @@
-# <Código> · <Título de su problemática>
+# <M24> · <¿Este atleta está sobreentrenado?>
 
 Las bases están en `BASES.md` y su ficha en `problematicas/`.
 
