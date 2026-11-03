@@ -163,3 +163,26 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 
 
+EVALUACIÓN · M24 · corrida 2
+Nota: 8,5/10
+
+A Formulación y PEAS: 1,5/2 · La medida de rendimiento sigue hablando de métricas del modelo, no del resultado del atleta.
+B Sistema: 1/1,5 · El paso 3 de «Cómo se corre en vivo» sigue sin decir cómo se calcula la salida.
+C Medición: 3/3 · Matrices, cierres y métricas correctos. La comparación entre entrenamiento y prueba está explicada.
+D Error más caro: 0,5/1 · Reconocen el falso negativo como error más caro, pero el único cambio que hicieron (subir el umbral a 0,45) aumentó los FN.
+E Comparado contra qué: 1/1 · Línea base de entrenamiento y de prueba con sus números. El checklist todavía menciona solo la línea base que predice SÍ.
+F Riesgo: 0,5/0,5 · Camino completo y riesgo concreto.
+G Bitácora: 1/1 · El registro de la corrida 1 está completo y coincide con la evaluación anterior.
+Topes aplicados: ninguno
+
+🎯 Agujero principal: Si el falso negativo es tu error más caro, ¿qué cambiarías en el sistema para cometer menos ese error, y cómo lo verías reflejado en tus matrices?
+
+Otros:
+
+• En la sección 1, ¿qué mediría el éxito del sistema para el atleta, y no solo el desempeño del modelo?
+• En el checklist de la sección 5, ¿«comparado contra qué» incluye también la línea base que predice NO?
+
+Estado: ✅ HABILITADO PARA LA MESA (8 o más)
+Anotá esta corrida en la bitácora.
+
+Mostrá esta evaluación en la mesa. Ahí se prueba que funcione en vivo y defienden sin IA.
