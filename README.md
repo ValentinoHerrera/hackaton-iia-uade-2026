@@ -158,7 +158,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 | Corrida | Nota | Agujero que encontró | Qué cambiamos |
 |---|---|---|---|
 | 1 | 8 | Inconsistencia entre la explicación de los falsos negativos y las matrices de confusión. También faltaba comparar con la clase más frecuente en prueba. | Corregimos la explicación de la sensibilidad y agregamos la línea base que siempre predice NO. |
-
+|2|8,5|si el falso negativo es el error mas caro, que cambiariamos en el sistema para cometer menos ese error|Fín|
 
 
 
