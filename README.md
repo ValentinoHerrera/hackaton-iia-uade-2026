@@ -115,18 +115,18 @@ El resultado en entrenamiento fue de 85,71 %, mientras que en prueba fue de 83,3
 Consideramos que el falso negativo es el error más caro. Esto se debe a que el sistema diría NO cuando el atleta en realidad rendiría peor. El preparador podría mantener la carga de entrenamiento y provocar una caída del rendimiento o incluso lesiones.
 
 Para reducir los falsos negativos, probamos distintos umbrales de decisión. Inicialmente utilizamos un umbral de 0,32, que produjo una sensibilidad del 100 %. Luego aumentamos el umbral a 0,45 para analizar el equilibrio entre falsos positivos y falsos negativos. Con este cambio, la sensibilidad pasó a 88,89 % en entrenamiento y 50 % en prueba.
-Con ese cambio conseguimos que no haya falsos negativos ni en entrenamiento ni en prueba. A cambio, aparece un falso positivo en entrenamiento: un atleta cuya carga podría haberse mantenido recibe una predicción SÍ.
-
-Importante: esto no significa que hayamos eliminado el riesgo de falsos negativos para siempre; solo que no aparecieron en estos 20 casos.
-
+Con el cambio de umbral logramos analizar el equilibrio entre falsos positivos y falsos negativos. Sin embargo, todavía se produjo un falso negativo en entrenamiento y otro en prueba. La sensibilidad fue de 88,89 % en entrenamiento y 50 % en prueba. Esto demuestra que aumentar el umbral reduce la cantidad de predicciones positivas, pero también puede hacer que algunos casos de riesgo no sean detectados.
 ## 5. ¿Comparado contra qué?
 
-**Línea base trivial.**Comparamos nuestra neurona con un sistema muy simple que siempre responde SÍ.
+**Línea base trivial.** Comparamos nuestra neurona con un sistema muy simple que siempre responde SÍ.
 
 En los 14 casos de entrenamiento hay 9 resultados SÍ y 5 NO. Por eso, la línea base siempre responde SÍ y obtiene un 64,29 % de exactitud.
 
 Si aplicamos esa misma estrategia a los 6 casos de prueba, acierta solamente 2 de 6: un 33,33 %.
-Nuestra neurona obtiene mejores resultados: 85,71 % en entrenamiento y 83,33 % en prueba.
+
+También comparamos el modelo con un sistema que siempre responde NO, ya que es la clase más frecuente en los casos de prueba. Este sistema acierta 4 de los 6 casos, obteniendo una exactitud del 66,67 %.
+
+Nuestra neurona obtiene un 85,71 % en entrenamiento y un 83,33 % en prueba, superando ambas líneas base.
 
 | Checklist (Clase 6) | Respuesta |
 |---|---|
@@ -157,17 +157,9 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 | Corrida | Nota | Agujero que encontró | Qué cambiamos |
 |---|---|---|---|
-| 1 | 8 | Nuestro texto dice que con 0,45 no hay falsos negativos ni en entrenamiento ni en prueba | Correjimos lo recien dicho |
+| 1 | 8 | Inconsistencia entre la explicación de los falsos negativos y las matrices de confusión. También faltaba comparar con la clase más frecuente en prueba. | Corregimos la explicación de la sensibilidad y agregamos la línea base que siempre predice NO. |
 
 
-Agujero principal: Tu texto dice que con 0,45 no hay falsos negativos ni en entrenamiento ni en prueba, pero tus matrices muestran FN = 1 en cada conjunto. ¿Cuál de las dos cosas es cierta, y qué pasa con la sensibilidad?
 
-Otros:
 
-• En prueba, ¿cuál es la clase más frecuente y cuánto acierta un sistema que responde siempre esa?
-• Completá el registro de corridas: el campo de la corrida 1 está vacío.
 
-Estado: ✅ HABILITADO PARA LA MESA (8 o más)
-Anotá esta corrida en la bitácora.
-
-Mostrá esta evaluación en la mesa. Ahí se prueba que funcione en vivo y defienden sin IA.
