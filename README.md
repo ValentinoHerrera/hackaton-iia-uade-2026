@@ -14,9 +14,9 @@ Las bases están en `BASES.md` y su ficha en `problematicas/`.
 
 ## 1. Formulación y PEAS
 
-**La pregunta.** ¿El atleta rendirá peor en el test de la semana siguiente?, SI = ¿El atleta rinde peor en el test de la semana siguiente?.
+**La pregunta.** ¿El atleta rendirá peor en el test de la semana siguiente?, SI = El atleta rinde peor en el test de la semana siguiente.
 
-| PEAS | Su sistema |
+| PEAS | Nuestro sistema |
 |---|---|
 | Medida de rendimiento | Evaluar si las predicciones son correctas mediante exactitud, precisión, sensibilidad y especificidad. También considerar el costo de los errores. |
 | Entorno |Atletas de un club deportivo que realizan entrenamientos semanales y evaluaciones de rendimiento. |
@@ -32,18 +32,31 @@ No son lo mismo. El objetivo indica qué queremos conseguir, mientras que las m�
 
 ## 2. El sistema
 
-**Cómo decide.** <Neurona: pesos y sesgo. Reglas: la lista de reglas si‑entonces. Agente: la regla con la que elige la acción.>
+**Cómo decide.** 
+Utilizamos una neurona artificial de cuatro entradas (perceptrón). Cada variable se multiplica por un peso, se suman los resultados y se agrega un sesgo. Finalmente, la función escalón devuelve SÍ o NO.
 
-**Variables que usa y por qué.** <Cuáles usa, cuáles descarta y por qué.>
+**Variables que usa y por qué.** usamos las cuatro variables disponibles:
+- Variabilidad de frecuencia cardíaca: puede aportar información sobre la recuperación del atleta.
+- Esfuerzo percibido: indica qué tan exigente siente el entrenamiento.
+- Horas de sueño: aportan información sobre el descanso.
+- Carga semanal: permite observar el volumen de entrenamiento acumulado.
+No descartamos ninguna porque todas pueden aportar información para anticipar una posible caída del rendimiento.
 
-**Cómo se corre en vivo.** <Pasos concretos para resolver un caso nuevo: link al Colab, a la planilla o la cuenta a mano.>
-
+**Cómo se corre en vivo.** 
+1- Se ingresan los cuatro valores del atleta.
+2- Se estandariza cada valor usando las medias y los desvíos del entrenamiento.
+3- Se aplica la fórmula de la neurona.
+4- Se obtiene una salida SÍ o NO.
+5- El preparador físico utiliza esa predicción como apoyo para decidir si reduce la carga.
 **Dos casos de ejemplo.**
 
 | Caso inventado | Valores | Salida del sistema |
 |---|---|---|
 | A | <…> | <SÍ/NO> |
 | B | <…> | <SÍ/NO> |
+Caso	Variabilidad	Esfuerzo	Sueño	Carga semanal	Salida
+A	35 ms	9	5,5 h	4000	SÍ
+B	90 ms	3	8 h	1800	NO
 
 ## 3. Medición
 
