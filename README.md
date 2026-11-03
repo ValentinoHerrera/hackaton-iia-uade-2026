@@ -31,7 +31,7 @@ No son lo mismo. El objetivo indica qué queremos conseguir, mientras que las m�
 ## 2. El sistema
 
 **Cómo decide.** 
-Utilizamos una neurona artificial de cuatro entradas, implementada mediante regresión logística. Cada variable se multiplica por un peso, se suman los resultados y se agrega un sesgo. Luego se aplica una función sigmoide que genera una probabilidad y, mediante un umbral de decisión de 0,45, se obtiene la respuesta SÍ o NO.
+Utilizamos una neurona artificial de cuatro entradas, implementada mediante regresión logística. Cada variable se multiplica por un peso, se suman los resultados y se agrega un sesgo. Luego se aplica una función sigmoide que genera una probabilidad y, mediante un umbral de decisión, se obtiene la respuesta SÍ o NO. Probamos dos umbrales: 0,45 y 0,32, para analizar cómo cambia el comportamiento del sistema.
 
 **Variables que usa y por qué.** usamos las cuatro variables disponibles:
 - Variabilidad de frecuencia cardíaca: puede aportar información sobre la recuperación del atleta.
@@ -55,7 +55,7 @@ No descartamos ninguna porque todas pueden aportar información para anticipar u
 ## 3. Medición
 Para medir el funcionamiento, usamos los 14 casos de entrenamiento para ajustar los pesos y el sesgo, y dejamos los 6 casos de prueba separados para comprobar cómo responde ante datos nuevos.
 
-Con el umbral ajustadoa 0,45, las predicciones quedan así:
+Con el umbral ajustado a 0,45, las predicciones quedan así:
 
 ENTRENAMIENTO
 Real:      [1 0 0 1 0 0 1 1 1 0 1 1 1 1]
@@ -107,7 +107,7 @@ PESOS APRENDIDOS
 SESGO APRENDIDO
 [0.61730024]
 
-Y con el umbral a 0,32 quedaria asi:
+Después de analizar los resultados obtenidos con el umbral de 0,45, decidimos probar un umbral más bajo, de 0,32, para reducir los falsos negativos, ya que consideramos que son el error más costoso en nuestro problema.:
 
 ENTRENAMIENTO
 Real:      [1 0 0 1 0 0 1 1 1 0 1 1 1 1]
@@ -162,12 +162,12 @@ SESGO APRENDIDO
 
 
 **Entrenamiento contra prueba.** 
-El resultado en entrenamiento fue de 85,71 %, mientras que en prueba fue de 83,33 %. La diferencia es pequeña, por lo que no observamos una señal clara de sobreajuste. Sin embargo, como solamente contamos con 6 casos de prueba, no podemos asegurar que el modelo mantenga el mismo rendimiento con otros atletas.
+Al comparar ambos umbrales, observamos que con 0,45 la exactitud fue de 85,71 % en entrenamiento y 83,33 % en prueba. La sensibilidad fue de 88,89 % y 50 %, respectivamente. En cambio, con 0,32 la exactitud aumentó a 92,86 % en entrenamiento y 100 % en prueba, mientras que la sensibilidad llegó al 100 % en ambos conjuntos. Esto muestra que bajar el umbral permitió detectar todos los casos positivos de nuestra muestra, aunque debemos tener en cuenta que solamente contamos con 6 casos de prueba, por lo que no podemos asegurar que el modelo mantenga esos resultados con otros atleta
 
 ## 4. El error más caro
 Consideramos que el falso negativo es el error más caro porque puede provocar que se mantenga una carga de entrenamiento excesiva en un atleta que podría rendir peor, aumentando el riesgo de lesiones y de caída del rendimiento.
 
-Para reducir este error, probamos distintos umbrales de decisión. Decidimos bajar el umbral de 0,45 a 0,32 porque buscamos priorizar la detección de los casos positivos y evitar falsos negativos, aunque esto implique aceptar algún falso positivo. Con este cambio, los falsos negativos pasaron de 1 a 0 tanto en entrenamiento como en prueba, y la sensibilidad aumentó al 100 % en ambos conjuntos. A cambio, apareció un falso positivo en entrenamiento, lo que significa que se podría reducir innecesariamente la carga de un atleta.
+Para reducir este error, probamos distintos umbrales de decisión. Con el umbral de 0,45 obtuvimos un falso negativo en entrenamiento y otro en prueba. Por eso, decidimos bajar el umbral a 0,32, buscando priorizar la detección de los casos positivos y evitar falsos negativos, aunque esto implique aceptar algún falso positivo. Con este cambio, los falsos negativos pasaron de 1 a 0 tanto en entrenamiento como en prueba, y la sensibilidad aumentó del 88,89 % al 100 % en entrenamiento y del 50 % al 100 % en prueba. A cambio, apareció un falso positivo en entrenamiento, lo que significa que se podría reducir innecesariamente la carga de un atleta.
 ## 5. ¿Comparado contra qué?
 
 **Línea base trivial.** Comparamos nuestra neurona con un sistema muy simple que siempre responde SÍ.
@@ -178,7 +178,7 @@ Si aplicamos esa misma estrategia a los 6 casos de prueba, acierta solamente 2 d
 
 También comparamos el modelo con un sistema que siempre responde NO, ya que es la clase más frecuente en los casos de prueba. Este sistema acierta 4 de los 6 casos, obteniendo una exactitud del 66,67 %.
 
-Nuestra neurona obtiene un 85,71 % en entrenamiento y un 83,33 % en prueba, superando ambas líneas base.
+Con el umbral de 0,45, nuestra neurona obtuvo una exactitud de 85,71 % en entrenamiento y 83,33 % en prueba. Al bajar el umbral a 0,32, obtuvo un 92,86 % en entrenamiento y un 100 % en prueba. En ambas corridas superó las líneas base utilizadas como comparación.
 
 | Checklist (Clase 6) | Respuesta |
 |---|---|
@@ -203,7 +203,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 | # | Qué le pedimos | Qué aceptamos | Qué rechazamos y por qué |
 |---|---|---|---|
-| 1 | Ayuda para diseñar el sistema de predicción de sobreentrenamiento. | Utilizar una neurona con las cuatro variables del archivo M24. | Rechazamos considerar que la predicción sea un diagnóstico definitivo de sobreentrenamiento porque la decsison final siempre tiene que ser de una persona, en nuestro caso el entrenador, lo que hace nuestro modelo es ofrecer una ayuda mas no una orden. Inicialmente utilizamos un umbral de 0,32, que priorizaba la detección de casos positivos y producía una sensibilidad del 100 %. Decidimos probar un umbral más alto, de 0,45, para analizar el equilibrio entre falsos positivos y falsos negativos. Esto redujo la sensibilidad, mostrando que el umbral influye directamente en las decisiones de la neurona. |
+| 1 | Una evaluación del README para identificar errores y aspectos que podíamos mejorar en el proyecto. | La recomendación de bajar el umbral de 0,45 a 0,32 para reducir los falsos negativos, ya que consideramos que son el error más costoso. También aceptamos mejorar la explicación del PEAS, detallar cómo funciona la neurona y agregar la comparación con las dos líneas base. | No eliminamos los resultados de la primera corrida (umbral 0,45), porque queríamos conservarlos para mostrar la comparación con la segunda corrida (umbral 0,32). |
 
 **Corridas contra el evaluador**
 
