@@ -124,7 +124,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 | # | Qué le pedimos | Qué aceptamos | Qué rechazamos y por qué |
 |---|---|---|---|
-| 1 | <> | <> | <> |
+| 1 | Ayuda para diseñar el sistema de predicción de sobreentrenamiento. | Utilizar una neurona con las cuatro variables del archivo M24. | Rechazamos considerar que la predicción sea un diagnóstico definitivo de sobreentrenamiento porque la decsison final siempre tiene que ser de una persona, en nuestro caso el entrenador, lo que hace nuestro modelo es ofrecer una ayuda mas no una orden. |
 
 **Corridas contra el evaluador**
 
