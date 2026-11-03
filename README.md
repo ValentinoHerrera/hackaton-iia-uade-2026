@@ -1,7 +1,5 @@
 # <M24>  ¿Este atleta está sobreentrenado?
 
-Las bases están en `BASES.md` y su ficha en `problematicas/`.
-
 **Integrantes:** Valentino Herrera · Juan Costabel
 
 **IA declarada:** Chat GPT
@@ -124,7 +122,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 | # | Qué le pedimos | Qué aceptamos | Qué rechazamos y por qué |
 |---|---|---|---|
-| 1 | Ayuda para diseñar el sistema de predicción de sobreentrenamiento. | Utilizar una neurona con las cuatro variables del archivo M24. | Rechazamos considerar que la predicción sea un diagnóstico definitivo de sobreentrenamiento porque la decsison final siempre tiene que ser de una persona, en nuestro caso el entrenador, lo que hace nuestro modelo es ofrecer una ayuda mas no una orden. |
+| 1 | Ayuda para diseñar el sistema de predicción de sobreentrenamiento. | Utilizar una neurona con las cuatro variables del archivo M24. | Rechazamos considerar que la predicción sea un diagnóstico definitivo de sobreentrenamiento porque la decsison final siempre tiene que ser de una persona, en nuestro caso el entrenador, lo que hace nuestro modelo es ofrecer una ayuda mas no una orden. Inicialmente utilizamos un umbral de 0,32, que priorizaba la detección de casos positivos y producía una sensibilidad del 100 %. Decidimos probar un umbral más alto, de 0,45, para analizar el equilibrio entre falsos positivos y falsos negativos. Esto redujo la sensibilidad, mostrando que el umbral influye directamente en las decisiones de la neurona. |
 
 **Corridas contra el evaluador**
 
