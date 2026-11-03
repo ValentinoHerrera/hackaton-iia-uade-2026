@@ -19,11 +19,8 @@ Las bases están en `BASES.md` y su ficha en `problematicas/`.
 | PEAS | Su sistema |
 |---|---|
 | Medida de rendimiento | Evaluar si las predicciones son correctas mediante exactitud, precisión, sensibilidad y especificidad. También considerar el costo de los errores. |
-
 | Entorno |Atletas de un club deportivo que realizan entrenamientos semanales y evaluaciones de rendimiento. |
-
 | Actuadores | Una pantalla o aplicación que muestra la predicción de la IA (SÍ o NO) y recomienda al preparador físico si debería reducir la carga de entrenamiento. |
-
 | Sensores | Reloj deportivo, Planilla de entrenamiento o pulsera inteligente: registra frecuencia cardíaca, esfuerzo percibido y actividad física. |
 
 **Objetivo y métrica.** 
