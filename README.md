@@ -211,7 +211,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 |---|---|---|---|
 | 1 | 8 | Inconsistencia entre la explicación de los falsos negativos y las matrices de confusión. También faltaba comparar con la clase más frecuente en prueba. | Corregimos la explicación de la sensibilidad y agregamos la línea base que siempre predice NO. |
 |2|8,5|El umbral de 0,45 aumentaba los falsos negativos; faltaba explicar el cálculo de salida, medir el resultado del atleta y mencionar ambas líneas base en el checklist|Modificamos la medida de rendimiento, explicamos el cálculo de la neurona, bajamos el umbral a 0,32 y agregamos ambas líneas base.|
-
+|3|9|---|---|
 
 
 
