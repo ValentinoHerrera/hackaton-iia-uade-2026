@@ -157,6 +157,6 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 | Corrida | Nota | Agujero que encontró | Qué cambiamos |
 |---|---|---|---|
-| 1 | <> | <> | <> |
+| 1 | 8 | Nuestro texto dice que con 0,45 no hay falsos negativos ni en entrenamiento ni en prueba | Correjimos lo recien dicho |
 
 
