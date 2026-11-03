@@ -50,13 +50,9 @@ No descartamos ninguna porque todas pueden aportar información para anticipar u
 5- El preparador físico utiliza esa predicción como apoyo para decidir si reduce la carga.
 **Dos casos de ejemplo.**
 
-| Caso inventado | Valores | Salida del sistema |
-|---|---|---|
-| A | <…> | <SÍ/NO> |
-| B | <…> | <SÍ/NO> |
-Caso	Variabilidad	Esfuerzo	Sueño	Carga semanal	Salida
-A	35 ms	9	5,5 h	4000	SÍ
-B	90 ms	3	8 h	1800	NO
+|Caso|Variabilidad|Esfuerzo|Sueño|Carga semanal|Salida (SI\NO)|
+| A |     35ms     | 9 |   5,5h  |     4000    | SÍ |
+| B |     90ms     | 3 |    8h   |     1800    | NO |
 
 ## 3. Medición
 
