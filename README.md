@@ -118,26 +118,39 @@ Real:      [1 0 0 0 0 1]
 Predicho:  [1 0 0 0 0 1]
 
 MATRIZ DE ENTRENAMIENTO
+
 VP = 9
+
 FN = 0
+
 FP = 1
+
 VN = 4
 
 MATRIZ DE PRUEBA
+
 VP = 2
+
 FN = 0
+
 FP = 0
+
 VN = 4
 
 MÉTRICAS
               Entrenamiento  Prueba
 Exactitud            92.86%  100.0%
+
 Precisión             90.0%  100.0%
+
 Sensibilidad         100.0%  100.0%
+
 Especificidad         80.0%  100.0%
 
 LÍNEA BASE: SIEMPRE SÍ
+
 Exactitud entrenamiento: 64.29 %
+
 Exactitud prueba: 33.33 %
 
 PESOS APRENDIDOS
