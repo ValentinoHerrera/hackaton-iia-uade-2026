@@ -160,3 +160,14 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 | 1 | 8 | Nuestro texto dice que con 0,45 no hay falsos negativos ni en entrenamiento ni en prueba | Correjimos lo recien dicho |
 
 
+Agujero principal: Tu texto dice que con 0,45 no hay falsos negativos ni en entrenamiento ni en prueba, pero tus matrices muestran FN = 1 en cada conjunto. ¿Cuál de las dos cosas es cierta, y qué pasa con la sensibilidad?
+
+Otros:
+
+• En prueba, ¿cuál es la clase más frecuente y cuánto acierta un sistema que responde siempre esa?
+• Completá el registro de corridas: el campo de la corrida 1 está vacío.
+
+Estado: ✅ HABILITADO PARA LA MESA (8 o más)
+Anotá esta corrida en la bitácora.
+
+Mostrá esta evaluación en la mesa. Ahí se prueba que funcione en vivo y defienden sin IA.
