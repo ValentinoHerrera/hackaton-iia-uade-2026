@@ -6,7 +6,7 @@
 
 **Pista:** Neurona: perceptrón con pesos y sesgo.
 
-**Publicación en LinkedIn:** [<link>](https://lnkd.in/p/dDU9w8_G)
+**Publicación en LinkedIn:** (https://lnkd.in/p/dDU9w8_G)
 
 ---
 
