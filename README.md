@@ -16,7 +16,7 @@
 
 | PEAS | Nuestro sistema |
 |---|---|
-| Medida de rendimiento | Evaluar si las predicciones son correctas mediante exactitud, precisión, sensibilidad y especificidad. También considerar el costo de los errores. |
+| Medida de rendimiento | evaluar si el atleta logra mantener o mejorar su rendimiento en el test de la semana siguiente y evitar posibles caídas de rendimiento. También se busca evitar reducciones innecesarias de la carga de entrenamiento.|
 | Entorno |Atletas de un club deportivo que realizan entrenamientos semanales y evaluaciones de rendimiento. |
 | Actuadores | Una pantalla o aplicación que muestra la predicción de la IA (SÍ o NO) y recomienda al preparador físico si debería reducir la carga de entrenamiento. |
 | Sensores | Reloj o pulsera deportiva para registrar la variabilidad de la frecuencia cardíaca y las horas de sueño; registros del entrenamiento para obtener la carga semanal; y una escala de percepción del esfuerzo completada por el atleta. |
@@ -42,10 +42,10 @@ No descartamos ninguna porque todas pueden aportar información para anticipar u
 
 **Cómo se corre en vivo.** 
 1- Se ingresan los cuatro valores del atleta.
-2- Se estandariza cada valor usando las medias y los desvíos del entrenamiento.
-3- Se procesan los valores mediante la neurona..
-4- Se obtiene una probabilidad y se compara con el umbral de 0,45.
-5- El sistema devuelve SÍ o NO. El preparador físico utiliza esa predicción como apoyo para decidir si reduce la carga.
+2- Se estandariza cada valor utilizando las medias y los desvíos calculados durante el entrenamiento.
+3- La neurona multiplica cada valor estandarizado por su peso, suma los resultados y agrega el sesgo. Luego aplica la función sigmoide para obtener una probabilidad.
+4- Se compara esa probabilidad con el umbral elegido (0,45). Si es igual o superior, predice SÍ; si es inferior, predice NO.
+5- El preparador físico utiliza esa predicción como apoyo para decidir si reduce la carga
 **Dos casos de ejemplo.**
 
 |Caso|Variabilidad|Esfuerzo|Sueño|Carga semanal|Salida (SI\NO)|
@@ -55,7 +55,7 @@ No descartamos ninguna porque todas pueden aportar información para anticipar u
 ## 3. Medición
 Para medir el funcionamiento, usamos los 14 casos de entrenamiento para ajustar los pesos y el sesgo, y dejamos los 6 casos de prueba separados para comprobar cómo responde ante datos nuevos.
 
-Con el umbral ajustado, las predicciones quedan así:
+Con el umbral ajustadoa 0,45, las predicciones quedan así:
 
 ENTRENAMIENTO
 Real:      [1 0 0 1 0 0 1 1 1 0 1 1 1 1]
@@ -107,15 +107,17 @@ PESOS APRENDIDOS
 SESGO APRENDIDO
 [0.61730024]
 
+Y con el umbral a 0,32 quedaria asi:
+
+
 
 **Entrenamiento contra prueba.** 
 El resultado en entrenamiento fue de 85,71 %, mientras que en prueba fue de 83,33 %. La diferencia es pequeña, por lo que no observamos una señal clara de sobreajuste. Sin embargo, como solamente contamos con 6 casos de prueba, no podemos asegurar que el modelo mantenga el mismo rendimiento con otros atletas.
 
 ## 4. El error más caro
-Consideramos que el falso negativo es el error más caro. Esto se debe a que el sistema diría NO cuando el atleta en realidad rendiría peor. El preparador podría mantener la carga de entrenamiento y provocar una caída del rendimiento o incluso lesiones.
+Consideramos que el falso negativo es el error más caro porque puede provocar que se mantenga una carga de entrenamiento excesiva en un atleta que podría rendir peor, aumentando el riesgo de lesiones y de caída del rendimiento.
 
-Para reducir los falsos negativos, probamos distintos umbrales de decisión. Inicialmente utilizamos un umbral de 0,32, que produjo una sensibilidad del 100 %. Luego aumentamos el umbral a 0,45 para analizar el equilibrio entre falsos positivos y falsos negativos. Con este cambio, la sensibilidad pasó a 88,89 % en entrenamiento y 50 % en prueba.
-Con el cambio de umbral logramos analizar el equilibrio entre falsos positivos y falsos negativos. Sin embargo, todavía se produjo un falso negativo en entrenamiento y otro en prueba. La sensibilidad fue de 88,89 % en entrenamiento y 50 % en prueba. Esto demuestra que aumentar el umbral reduce la cantidad de predicciones positivas, pero también puede hacer que algunos casos de riesgo no sean detectados.
+Para reducir este error, probamos distintos umbrales de decisión. Decidimos bajar el umbral de 0,45 a 0,32 porque buscamos priorizar la detección de los casos positivos y evitar falsos negativos, aunque esto implique aceptar algún falso positivo. Con este cambio, los falsos negativos pasaron de 1 a 0 tanto en entrenamiento como en prueba, y la sensibilidad aumentó al 100 % en ambos conjuntos. A cambio, apareció un falso positivo en entrenamiento, lo que significa que se podría reducir innecesariamente la carga de un atleta.
 ## 5. ¿Comparado contra qué?
 
 **Línea base trivial.** Comparamos nuestra neurona con un sistema muy simple que siempre responde SÍ.
@@ -163,26 +165,4 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 
 
 
-EVALUACIÓN · M24 · corrida 2
-Nota: 8,5/10
 
-A Formulación y PEAS: 1,5/2 · La medida de rendimiento sigue hablando de métricas del modelo, no del resultado del atleta.
-B Sistema: 1/1,5 · El paso 3 de «Cómo se corre en vivo» sigue sin decir cómo se calcula la salida.
-C Medición: 3/3 · Matrices, cierres y métricas correctos. La comparación entre entrenamiento y prueba está explicada.
-D Error más caro: 0,5/1 · Reconocen el falso negativo como error más caro, pero el único cambio que hicieron (subir el umbral a 0,45) aumentó los FN.
-E Comparado contra qué: 1/1 · Línea base de entrenamiento y de prueba con sus números. El checklist todavía menciona solo la línea base que predice SÍ.
-F Riesgo: 0,5/0,5 · Camino completo y riesgo concreto.
-G Bitácora: 1/1 · El registro de la corrida 1 está completo y coincide con la evaluación anterior.
-Topes aplicados: ninguno
-
-🎯 Agujero principal: Si el falso negativo es tu error más caro, ¿qué cambiarías en el sistema para cometer menos ese error, y cómo lo verías reflejado en tus matrices?
-
-Otros:
-
-• En la sección 1, ¿qué mediría el éxito del sistema para el atleta, y no solo el desempeño del modelo?
-• En el checklist de la sección 5, ¿«comparado contra qué» incluye también la línea base que predice NO?
-
-Estado: ✅ HABILITADO PARA LA MESA (8 o más)
-Anotá esta corrida en la bitácora.
-
-Mostrá esta evaluación en la mesa. Ahí se prueba que funcione en vivo y defienden sin IA.
