@@ -132,10 +132,4 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 |---|---|---|---|
 | 1 | <> | <> | <> |
 
-# 10. Mostrar pesos y sesgo aprendidos
-print("\nPESOS APRENDIDOS")
-print(modelo.coef_)
-
-print("\nSESGO APRENDIDO")
-print(modelo.intercept_)
 
