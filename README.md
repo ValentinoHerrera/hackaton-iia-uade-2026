@@ -184,7 +184,7 @@ Nuestra neurona obtiene un 85,71 % en entrenamiento y un 83,33 % en prueba, supe
 |---|---|
 | ¿Qué datos? | 14 casos de entrenamiento y 6 de prueba del archivo M24. |
 | ¿Qué métrica? | Exactitud, precisión, sensibilidad y especificidad. |
-| ¿Comparado contra qué? | Un sistema que siempre predice SÍ. |
+| ¿Comparado contra qué? | Un sistema que siempre predice SÍ y otro que siempre predice NO. |
 | ¿Quién lo midió? |Nuestro grupo, mediante un programa en Python ejecutado en Google Colab. |
 
 ## 6. Riesgo: el camino completo
@@ -210,7 +210,7 @@ Por eso, la predicción debe servir como apoyo y no reemplazar la evaluación de
 | Corrida | Nota | Agujero que encontró | Qué cambiamos |
 |---|---|---|---|
 | 1 | 8 | Inconsistencia entre la explicación de los falsos negativos y las matrices de confusión. También faltaba comparar con la clase más frecuente en prueba. | Corregimos la explicación de la sensibilidad y agregamos la línea base que siempre predice NO. |
-|2|8,5|si el falso negativo es el error mas caro, que cambiariamos en el sistema para cometer menos ese error|Fín|
+|2|8,5|El umbral de 0,45 aumentaba los falsos negativos; faltaba explicar el cálculo de salida, medir el resultado del atleta y mencionar ambas líneas base en el checklist|Modificamos la medida de rendimiento, explicamos el cálculo de la neurona, bajamos el umbral a 0,32 y agregamos ambas líneas base.|
 
 
 
