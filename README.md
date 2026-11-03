@@ -57,26 +57,43 @@ Para medir el funcionamiento, usamos los 14 casos de entrenamiento para ajustar 
 
 Con el umbral ajustado, las predicciones quedan así:
 
-**Entrenamiento (casos 1–14)**
+ENTRENAMIENTO
+Real:      [1 0 0 1 0 0 1 1 1 0 1 1 1 1]
+Predicho:  [1 0 1 1 0 0 1 1 0 0 1 1 1 1]
 
-| | Predice SÍ | Predice NO |
-|---|---|---|
-| **Real SÍ** | VP = 9 | FN = 0 |
-| **Real NO** | FP = 1 | VN = 4 |
+PRUEBA
+Real:      [1 0 0 0 0 1]
+Predicho:  [1 0 0 0 0 0]
 
-**Prueba (casos 15–20)**
+MATRIZ DE ENTRENAMIENTO
+VP = 8
+FN = 1
+FP = 1
+VN = 4
 
-| | Predice SÍ | Predice NO |
-|---|---|---|
-| **Real SÍ** | VP = 2 | FN = 0 |
-| **Real NO** | FP = 0 | VN = 4 |
+MATRIZ DE PRUEBA
+VP = 1
+FN = 1
+FP = 0
+VN = 4
 
-| Métrica | Entrenamiento | Prueba |
-|---|---|---|
-| Exactitud | 92,86% | 100 % |
-| Precisión | 90 % | 100 % |
-| Sensibilidad | 100 % | 100 % |
-| Especificidad | 80 % | 100 % |
+MÉTRICAS
+              Entrenamiento  Prueba
+Exactitud            85.71%  83.33%
+Precisión            88.89%  100.0%
+Sensibilidad         88.89%   50.0%
+Especificidad         80.0%  100.0%
+
+LÍNEA BASE: SIEMPRE SÍ
+Exactitud entrenamiento: 64.29 %
+Exactitud prueba: 33.33 %
+
+PESOS APRENDIDOS
+[[-1.04203214  0.64280057 -0.604763   -0.10015842]]
+
+SESGO APRENDIDO
+[0.61730024]
+
 
 **Entrenamiento contra prueba.** El resultado en prueba fue mejor que en entrenamiento: la neurona clasificó correctamente los 6 casos de prueba.
 No observamos señales de sobreajuste en estos resultados, ya que el modelo también funciona bien con los datos que no utilizó para entrenarse. Sin embargo, la muestra de prueba es muy pequeña, por lo que no podemos asegurar que mantenga ese rendimiento con otros atletas.
