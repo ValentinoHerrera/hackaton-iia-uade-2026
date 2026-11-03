@@ -1,10 +1,13 @@
-# <M24> · <¿Este atleta está sobreentrenado?>
+# <M24>  ¿Este atleta está sobreentrenado?
 
 Las bases están en `BASES.md` y su ficha en `problematicas/`.
 
-**Integrantes:** <Valentino Herrera> · <Juan Costabel>
-**IA declarada:** <Chat GPT>
-**Pista:** <Neurona: perceptrón con pesos y sesgo.>
+**Integrantes:** Valentino Herrera · Juan Costabel
+
+**IA declarada:** Chat GPT
+
+**Pista:** Neurona: perceptrón con pesos y sesgo.
+
 **Publicación en LinkedIn:** <link>
 
 ---
